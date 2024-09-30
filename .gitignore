@@ -1,0 +1,14 @@
+# Ignore build artifacts
+build/
+*.o
+*.out
+*.exe
+
+.DS_Store
+Thumbs.db
+
+*.swp
+*.swo
+*.bak
+
+*.log
