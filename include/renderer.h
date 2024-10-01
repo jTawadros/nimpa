@@ -7,6 +7,7 @@ class Renderer {
         void initialize();
         void draw();
         void cleanup();
+        int getInput();
 };
 
 #endif
