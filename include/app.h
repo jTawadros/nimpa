@@ -1,13 +1,15 @@
 #ifndef APP_H
 #define APP_H
 
+#include "renderer.h"
+
 class App {
     public:
-        App();
         void start();
     private:
-        void initialize();
-        void main_loop();
+        Renderer renderer;
+        void handleInput();
+
 };
 
 #endif // APP_H
