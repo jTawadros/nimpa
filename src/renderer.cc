@@ -4,7 +4,9 @@
 
 void Renderer::initialize() {
     initscr();
-    // do stuff
+    cbreak();
+    noecho();
+    keypad(stdscr, TRUE);
 }
 
 void Renderer::draw(){
@@ -15,4 +17,8 @@ void Renderer::draw(){
 
 void Renderer::cleanup() {
     endwin();
+}
+
+int Renderer::getInput() {
+    return getch();
 }

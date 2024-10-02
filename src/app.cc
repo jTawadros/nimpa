@@ -13,5 +13,5 @@ void App::start(){
 }
 
 void App::handleInput(){
-    return;
+    int ch = renderer.getInput();
 }
