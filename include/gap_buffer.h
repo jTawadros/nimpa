@@ -17,7 +17,7 @@ class GapBuffer {
         int gap_right;
         int buffer_size;
 
-        void grow(int k, int position); // Grow the buffer by k at position
+        void grow(int position);        // Grow the at position
         void move_cursor(int position); // Move gap to position
         void left(int position);        // Move the gap left
         void right(int position);       // Move the gap right
