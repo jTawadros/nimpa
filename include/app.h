@@ -2,13 +2,15 @@
 #define APP_H
 
 #include "renderer.h"
+#include "gap_buffer.h"
 
 class App {
     public:
         void start();
     private:
         Renderer renderer;
-        void handleInput();
+        GapBuffer gapBuffer;
+        bool handleInput();
 
 };
 

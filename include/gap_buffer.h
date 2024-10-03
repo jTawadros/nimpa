@@ -8,8 +8,10 @@ class GapBuffer {
         GapBuffer(int buffer_size = 50, int gap_size = 10);
         ~GapBuffer();
 
-        void insert(char input, int position);
-        std::string getBuffer() const; //returns the current getBuffer
+        void insert(char input);
+        char* getBuffer() const; // Get char array without gap
+        void move_cursor_left();
+        void move_cursor_right();
     private:
         char* buffer;
         int gap_size;
@@ -18,8 +20,7 @@ class GapBuffer {
         int buffer_size;
 
         void grow(int position);        // Grow the at position
-        void move_cursor_left();
-        void move_cursor_right();
+
         void left(int position);        // Move the gap left
         void right(int position);       // Move the gap right
         

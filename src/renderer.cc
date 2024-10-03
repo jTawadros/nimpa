@@ -18,6 +18,7 @@ void Renderer::draw(const char* buffer){
 }
 
 void Renderer::cleanup() {
+    // Deallocate all ncurses memory
     endwin();
 }
 
