@@ -37,8 +37,8 @@ void GapBuffer::grow(int position){
     buffer_size = new_size;
 }
 
-const char* GapBuffer::getBuffer() {
-    static char temp[buffer_size] = buffer;
+char* GapBuffer::getBuffer() const {
+    char* temp = new char[buffer_size];
     int index = 0;
 
     // Copy characters from the left side of 
