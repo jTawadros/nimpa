@@ -73,8 +73,25 @@ void GapBuffer::right(int position){
     }
 }
 
-void GapBuffer::move_cursor(int position){
+void GapBuffer::move_cursor_left(){
+    if (gap_left > 0){
+        // Adjust the gap left
+        left(gap_left - 1);
+    }
+}
+
+void GapBuffer::move_cursor_right(){
+    if(gap_right < buffer_size - 1){
+        // Adjust the gap right
+        right(gap_right + 1);
+    }
 
 }
 
-
+// void GapBuffer::move_cursor_left(int position){
+// 
+// }
+// 
+// void GapBuffer::move_cursor_left(int position){
+// 
+// }
