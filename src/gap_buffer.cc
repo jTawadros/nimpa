@@ -21,7 +21,7 @@ void GapBuffer::grow(int position){
     }
 
     // set gap
-    int new_gap_size = new_size - buffer_size + 1;
+    int new_gap_size = new_size - buffer_size;
 
 
     int gap_offset = new_size - (buffer_size - gap_right - 1);
@@ -39,11 +39,42 @@ void GapBuffer::grow(int position){
 
 
 void GapBuffer::insert(char input, int position){
-    
+
     // Move the gap to the insert position
     if (position != gap_left) {
         move_cursor(position);
     }
+
+    if (gap_right == gap_left){
+        // Double the size 
+        grow(position);
+    }
+
+    // insert in the correct position.
+    buffer[gap_left] = input;
+    gap_left++;
+    position++;
+
+}
+
+void GapBuffer::left(int position){
+    while(position < gap_left){
+        gap_left--;
+        gap_right--;
+        buffer[gap_right+1] = buffer[gap_left];
+    }
+}
+
+void GapBuffer::right(int position){
+    while(position < gap_left){
+        gap_left++;
+        gap_right++;
+        buffer[gap_left-1] = buffer[gap_right];
+    }
+}
+
+void GapBuffer::move_cursor(int position){
+
 }
 
 
