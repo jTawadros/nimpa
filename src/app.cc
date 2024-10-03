@@ -6,7 +6,7 @@ void App::start(){
     bool running = true;
     while(running) {
         running = handleInput();
-        renderer.draw();
+        renderer.draw(gapBuffer.getBuffer());
     }
 
     renderer.cleanup();

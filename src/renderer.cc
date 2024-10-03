@@ -9,9 +9,11 @@ void Renderer::initialize() {
     keypad(stdscr, TRUE);
 }
 
-void Renderer::draw(){
+void Renderer::draw(const char* buffer){
     clear();
-    // Draw stuff
+    for(int i = 0; buffer[i] != '\0'; ++i){
+        addch(buffer[i]);
+    }
     refresh();
 }
 
