@@ -14,6 +14,8 @@ void Renderer::draw(const char* buffer){
     for(int i = 0; buffer[i] != '\0'; ++i){
         addch(buffer[i]);
     }
+    // Place cursor in the position used in the buffer.
+
     refresh();
 }
 
