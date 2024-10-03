@@ -38,22 +38,16 @@ void GapBuffer::grow(int position){
 }
 
 
-void GapBuffer::insert(char input, int position){
-
-    // Move the gap to the insert position
-    if (position != gap_left) {
-        move_cursor(position);
-    }
+void GapBuffer::insert(char input){
 
     if (gap_right == gap_left){
         // Double the size 
-        grow(position);
+        grow(gap_left);
     }
 
     // insert in the correct position.
     buffer[gap_left] = input;
     gap_left++;
-    position++;
 
 }
 

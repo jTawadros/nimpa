@@ -5,13 +5,33 @@ void App::start(){
 
     bool running = true;
     while(running) {
-        handleInput();
+        running = handleInput();
         renderer.draw();
     }
 
     renderer.cleanup();
 }
 
-void App::handleInput(){
+bool App::handleInput(){
     int ch = renderer.getInput();
+
+    switch (ch) {
+        case KEY_LEFT:
+            gapBuffer.move_cursor_left();
+            return true;
+            break;
+        case KEY_RIGHT:
+            gapBuffer.move_cursor_right();
+            return true;
+            break;
+        case KEY_F(1):
+            return false;
+            break;
+        default:
+            if (ch >= 32 && ch <= 126) {
+                gapBuffer.insert(ch);
+            }
+            return true;
+            break;
+    }
 }

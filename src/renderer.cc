@@ -1,5 +1,5 @@
 #include "../include/renderer.h"
-#include <ncurses.h>
+
 
 
 void Renderer::initialize() {
