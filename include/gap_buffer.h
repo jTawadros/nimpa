@@ -12,6 +12,7 @@ class GapBuffer {
         char* getBuffer() const; // Get char array without gap
         void move_cursor_left();
         void move_cursor_right();
+        int get_cursor();
     private:
         char* buffer;
         int gap_size;

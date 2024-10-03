@@ -111,3 +111,8 @@ void GapBuffer::move_cursor_right(){
 // void GapBuffer::move_cursor_left(int position){
 // 
 // }
+
+
+int GapBuffer::get_cursor(){
+    return gap_left;
+}

@@ -6,7 +6,7 @@
 class Renderer {
     public:
         void initialize();
-        void draw(const char* buffer);
+        void draw(const char* buffer, int cursor_position);
         void cleanup();
         int getInput();
 };

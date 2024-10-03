@@ -9,12 +9,16 @@ void Renderer::initialize() {
     keypad(stdscr, TRUE);
 }
 
-void Renderer::draw(const char* buffer){
+void Renderer::draw(const char* buffer, int cursor_position){
     clear();
     for(int i = 0; buffer[i] != '\0'; ++i){
         addch(buffer[i]);
     }
     // Place cursor in the position used in the buffer.
+    int y = cursor_position / COLS;
+    int x = cursor_position % COLS;
+
+    move(y, x);
 
     refresh();
 }
