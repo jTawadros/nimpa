@@ -1,6 +1,5 @@
 #include "../include/renderer.h"
-
-
+#include <utility>
 
 void Renderer::initialize() {
     initscr();
@@ -32,4 +31,8 @@ void Renderer::cleanup() {
 int Renderer::getInput() {
     int ch = getch();
     return ch;
+}
+
+int Renderer::getColumns(){
+    return COLS;
 }

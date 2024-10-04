@@ -103,6 +103,19 @@ void GapBuffer::move_cursor_right(){
 
 }
 
+void GapBuffer::move_cursor_up(int COLS){
+    if (gap_left >= COLS){
+        // Adjust the gap left
+        left(gap_left - COLS);
+    }
+}
+
+void GapBuffer::move_cursor_down(int COLS){
+    if (gap_left + COLS < buffer_size - (gap_right - gap_left)){
+        // Adjust the gap left
+        right(gap_left + COLS);
+    }
+}
 
 int GapBuffer::get_cursor(){
     return gap_left;

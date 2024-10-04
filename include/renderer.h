@@ -2,6 +2,7 @@
 #define RENDERER_H
 
 #include<ncurses.h>
+#include<iostream>
 
 class Renderer {
     public:
@@ -9,7 +10,7 @@ class Renderer {
         void draw(const char* buffer, int cursor_position);
         void cleanup();
         int getInput();
-        int getScreenSize();
+        int getColumns();
 };
 
 #endif
