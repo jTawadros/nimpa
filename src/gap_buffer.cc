@@ -83,7 +83,7 @@ void GapBuffer::right(int position){
     while(position > gap_left && gap_right < buffer_size - 1){
         gap_left++;
         gap_right++;
-        buffer[gap_left] = buffer[gap_right + 1];
+        buffer[gap_left - 1] = buffer[gap_right];
 
     }
 }
@@ -98,7 +98,7 @@ void GapBuffer::move_cursor_left(){
 void GapBuffer::move_cursor_right(){
     if(gap_right < buffer_size - 1){
         // Adjust the gap right
-        right(gap_right + 1);
+        right(gap_left + 1);
     }
 
 }
