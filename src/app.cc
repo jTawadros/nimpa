@@ -1,7 +1,9 @@
 #include "../include/app.h"
+#include <iostream>
 
 void App::start(){
     // Init renderer
+    renderer.initialize();
 
     bool running = true;
     while(running) {
@@ -14,17 +16,17 @@ void App::start(){
 
 bool App::handleInput(){
     int ch = renderer.getInput();
-
     switch (ch) {
-        case KEY_LEFT:
+        case 260:
             gapBuffer.move_cursor_left();
             return true;
             break;
-        case KEY_RIGHT:
+        case 261:
             gapBuffer.move_cursor_right();
             return true;
             break;
         case KEY_F(1):
+            renderer.cleanup();
             return false;
             break;
         default:

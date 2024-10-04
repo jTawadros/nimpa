@@ -13,23 +13,21 @@ GapBuffer::~GapBuffer(){
 
 void GapBuffer::grow(int position){
     int new_size = buffer_size * 2;
-    char* temp = new char[buffer_size];
+    char* temp = new char[new_size];
 
     // place characters 
-    for(int i = position; i < new_size; i++){
-        temp[i - position] = buffer[i];
+    for(int i = 0; i < gap_left; i++){
+        temp[i] = buffer[i];
     }
 
     // set gap
-    int new_gap_size = new_size - buffer_size;
 
-
-    int gap_offset = new_size - (buffer_size - gap_right - 1);
+    int new_gap_right_start = new_size - (buffer_size - gap_right - 1);
     for(int i = gap_right + 1; i < buffer_size; i++){
-        temp[gap_offset - (i - gap_right - 1)] = buffer[i];
+        temp[new_gap_right_start + (i - gap_right - 1)] = buffer[i];
     }
 
-    gap_right = gap_left + new_gap_size - 1;
+    gap_right = new_gap_right_start - 1;
 
 
     delete[] buffer;
@@ -82,10 +80,11 @@ void GapBuffer::left(int position){
 }
 
 void GapBuffer::right(int position){
-    while(position < gap_left){
+    while(position > gap_left && gap_right < buffer_size - 1){
         gap_left++;
         gap_right++;
-        buffer[gap_left-1] = buffer[gap_right];
+        buffer[gap_left] = buffer[gap_right + 1];
+
     }
 }
 
@@ -103,14 +102,6 @@ void GapBuffer::move_cursor_right(){
     }
 
 }
-
-// void GapBuffer::move_cursor_left(int position){
-// 
-// }
-// 
-// void GapBuffer::move_cursor_left(int position){
-// 
-// }
 
 
 int GapBuffer::get_cursor(){

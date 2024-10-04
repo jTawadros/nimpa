@@ -4,12 +4,13 @@
 
 void Renderer::initialize() {
     initscr();
-    cbreak();
+    raw();
     noecho();
     keypad(stdscr, TRUE);
 }
 
 void Renderer::draw(const char* buffer, int cursor_position){
+    clearok(stdscr, TRUE);
     clear();
     for(int i = 0; buffer[i] != '\0'; ++i){
         addch(buffer[i]);
@@ -29,5 +30,6 @@ void Renderer::cleanup() {
 }
 
 int Renderer::getInput() {
-    return getch();
+    int ch = getch();
+    return ch;
 }
