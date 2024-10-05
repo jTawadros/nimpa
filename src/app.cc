@@ -46,6 +46,9 @@ bool App::handleInput(){
             gapBuffer.remove_at_cursor();
             return true;
 
+        case 10:
+            gapBuffer.insert('/n');
+            return true;
         case KEY_F(1):
             renderer.cleanup();
             return false;
