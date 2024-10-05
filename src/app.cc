@@ -42,7 +42,7 @@ bool App::handleInput(){
             break;
 
         // KEY_BACKSPACE
-        case 263:
+        case 127:
             gapBuffer.remove_at_cursor();
             return true;
 
