@@ -2,6 +2,7 @@
 #define GAP_BUFFER_H
 
 #include <string>
+#include "line_tracker.h"
 
 class GapBuffer {
     public:
@@ -22,6 +23,8 @@ class GapBuffer {
         int gap_left;
         int gap_right;
         int buffer_size;
+
+        LineTracker lineTracker;
 
         void grow(int position);        // Grow the at position
 
