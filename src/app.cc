@@ -41,6 +41,11 @@ bool App::handleInput(){
             return true;
             break;
 
+        // KEY_BACKSPACE
+        case 263:
+            gapBuffer.remove_at_cursor();
+            return true;
+
         case KEY_F(1):
             renderer.cleanup();
             return false;

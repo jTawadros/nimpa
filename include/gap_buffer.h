@@ -14,6 +14,7 @@ class GapBuffer {
         void move_cursor_right();
         void move_cursor_up(int COLS);
         void move_cursor_down(int COLS);
+        void remove_at_cursor();
         int get_cursor();
     private:
         char* buffer;

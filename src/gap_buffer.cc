@@ -117,6 +117,11 @@ void GapBuffer::move_cursor_down(int COLS){
     }
 }
 
+void GapBuffer::remove_at_cursor(){
+    if(gap_left > 0) {
+        gap_left--;
+    }
+}
 int GapBuffer::get_cursor(){
     return gap_left;
 }
