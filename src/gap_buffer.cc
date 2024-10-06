@@ -5,6 +5,7 @@
 GapBuffer::GapBuffer(int buffer_size, int gap_size)
     : buffer_size(buffer_size), gap_size(gap_size), gap_left(0), gap_right(gap_size-1) {
         buffer = new char[buffer_size];
+        lineStarts.push_back(0);
     }
 
 GapBuffer::~GapBuffer(){
@@ -67,15 +68,42 @@ void GapBuffer::insert(char input){
 
     // insert in the correct position.
     buffer[gap_left] = input;
+
+    if(input == '\n') addNewLine(gap_left);
+
     gap_left++;
 
 }
 
+void GapBuffer::addNewLine(int position){
+    lineStarts.push_back(position);
+}
+
+int GapBuffer::getLineFromBuffer(int position) const {
+    for (int i = 0; i < lineStarts.size(); ++i) {
+        if (lineStarts[i] > position) {
+            return i - 1;
+        }
+    }
+    return lineStarts.size() - 1;
+}
+
+int GapBuffer::getLineStart(int lineIndex) const {
+    return lineStarts[lineIndex];
+}
+
+void GapBuffer::removeLine(int lineIndex) {
+    if (lineIndex >= 0 && lineIndex < lineStarts.size()) {
+        lineStarts.erase(lineStarts.begin() + lineIndex);
+    }
+}
+
 void GapBuffer::left(int position){
-    while(position < gap_left){
+    while(gap_left > position){
         gap_left--;
+        buffer[gap_right] = buffer[gap_left];
         gap_right--;
-        buffer[gap_right+1] = buffer[gap_left];
+
     }
 }
 
@@ -103,25 +131,73 @@ void GapBuffer::move_cursor_right(){
 
 }
 
-void GapBuffer::move_cursor_up(int COLS){
-    if (gap_left >= COLS){
-        // Adjust the gap left
-        left(gap_left - COLS);
+void GapBuffer::move_cursor_up(int COLS) {
+    // Determine the current line number based on gap_left
+    int currentLine = getLineFromBuffer(gap_left);
+
+    // Only move up if not on the first line
+    if (currentLine > 0) {
+        // Get the start of the current line and the previous line
+        int currentLineStart = getLineStart(currentLine);
+        int previousLineStart = getLineStart(currentLine - 1);
+
+        // Calculate the current column within the line
+        int currentColumn = gap_left - currentLineStart;
+
+        // Calculate the target position in the previous line
+        int previousLineLength = getLineEnd(currentLine - 1) - previousLineStart;
+        int targetPosition = previousLineStart + std::min(currentColumn, previousLineLength);
+
+        // Move left until we reach the target position
+        while (gap_left > targetPosition) {
+            move_cursor_left();  // Use the existing left movement logic
+        }
     }
 }
 
+
+
 void GapBuffer::move_cursor_down(int COLS){
-    if (gap_left + COLS < buffer_size - (gap_right - gap_left)){
-        // Adjust the gap left
-        right(gap_left + COLS);
+
+    int currentLine = getLineFromBuffer(gap_left);
+
+    if (currentLine < lineStarts.size() - 1) {
+        int currentLineStart = getLineStart(currentLine);
+        int nextLineStart = getLineStart(currentLine + 1);
+
+        int currentColumn = gap_left - currentLineStart;
+
+        int nextLineLength = getLineEnd(currentLine + 1) - nextLineStart;
+        int targetPos = nextLineStart + std::min(currentColumn, nextLineLength);
+
+        while (gap_left < targetPos) {
+            move_cursor_right();
+        }
     }
 }
 
 void GapBuffer::remove_at_cursor(){
     if(gap_left > 0) {
         gap_left--;
+
+
+        if(buffer[gap_left] == '\n') {
+            int lineToRemove = getLineFromBuffer(gap_left);
+            removeLine(lineToRemove);
+        }
     }
 }
 int GapBuffer::get_cursor(){
     return gap_left;
 }
+
+int GapBuffer::getLineEnd(int currentLine) {
+    // If the current line is the last line, the end is at gap_right or buffer_size - 1
+    if (currentLine + 1 >= lineStarts.size()) {
+        return buffer_size - 1;  // Last character in the buffer
+    } else {
+        // Otherwise, it's the position just before the start of the next line
+        return getLineStart(currentLine + 1) - 1;
+    }
+}
+

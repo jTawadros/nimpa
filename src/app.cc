@@ -1,5 +1,4 @@
 #include "../include/app.h"
-#include <iostream>
 
 void App::start(){
     // Init renderer
@@ -8,7 +7,8 @@ void App::start(){
     bool running = true;
     while(running) {
         running = handleInput();
-        renderer.draw(gapBuffer.getBuffer(), gapBuffer.get_cursor());
+        renderer.draw(gapBuffer.getBuffer(), gapBuffer.get_cursor(), gapBuffer);
+
     }
 
     renderer.cleanup();
@@ -47,7 +47,7 @@ bool App::handleInput(){
             return true;
 
         case 10:
-            gapBuffer.insert('/n');
+            gapBuffer.insert('\n');
             return true;
         case KEY_F(1):
             renderer.cleanup();
@@ -61,4 +61,5 @@ bool App::handleInput(){
             return true;
             break;
     }
+
 }

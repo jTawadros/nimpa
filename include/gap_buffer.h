@@ -2,7 +2,7 @@
 #define GAP_BUFFER_H
 
 #include <string>
-#include "line_tracker.h"
+#include <vector>
 
 class GapBuffer {
     public:
@@ -16,7 +16,15 @@ class GapBuffer {
         void move_cursor_up(int COLS);
         void move_cursor_down(int COLS);
         void remove_at_cursor();
+        int getLineStart(int lineIndex) const;
         int get_cursor();
+        int getLineEnd(int currentLine);
+
+
+        void addNewLine(int position);
+        int getLineFromBuffer(int position) const;
+        void removeLine(int lineIndex);
+
     private:
         char* buffer;
         int gap_size;
@@ -24,12 +32,11 @@ class GapBuffer {
         int gap_right;
         int buffer_size;
 
-        LineTracker lineTracker;
-
         void grow(int position);        // Grow the at position
-
         void left(int position);        // Move the gap left
         void right(int position);       // Move the gap right
+
+        std::vector<int> lineStarts;    // Vector to track new Lines
         
 };
 
