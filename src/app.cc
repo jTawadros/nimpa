@@ -14,6 +14,54 @@ void App::start(){
     renderer.cleanup();
 }
 
+void App::openFile(const std::string& fileName){
+    std::ifstream inFile(fileName);
+    if(inFile) {
+        File_Here = fileName;
+        std::string fileContent;
+        char ch;
+        while (inFile.get(ch)) {
+            fileContent += ch;
+        }
+
+        inFile.close();
+        for (char a : fileContent) {
+            gapBuffer.insert(a);
+        }
+
+    }else {
+        std::ofstream outFile(fileName);
+
+        if (outFile) {
+            File_Here = fileName;
+            outFile.close();
+        } else {
+            std::cerr << "Could not create the file: " << fileName << std::endl;
+        }
+
+    }
+}
+
+void App::saveFile() {
+
+    std::ofstream outFile(File_Here);
+    if (outFile) {
+        char* buffer = gapBuffer.getBuffer();
+        std::string test = gapBuffer.getBuffer();
+
+        for (size_t i = 0; i < test.size(); ++i) {
+            outFile << buffer[i];
+        }
+        outFile.close();
+        std::cout << "File saved: " << File_Here << std::endl;
+
+    } else {
+        std::cerr << "Error: Could not save file: " << File_Here << std::endl;
+    }
+
+
+}
+
 bool App::handleInput(){
     int ch = renderer.getInput();
     switch (ch) {
@@ -52,6 +100,11 @@ bool App::handleInput(){
         case KEY_F(1):
             renderer.cleanup();
             return false;
+            break;
+
+        case KEY_F(2):
+            saveFile();
+            return true;
             break;
 
         default:
