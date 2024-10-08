@@ -94,6 +94,11 @@ bool App::handleInput(){
             saveFile();
             return true;
             break;
+        case KEY_F(3):
+            saveFile();
+            renderer.cleanup();
+            return false;
+            break;
 
         default:
             if (ch >= 32 && ch <= 126) {
