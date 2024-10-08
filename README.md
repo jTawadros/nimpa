@@ -6,10 +6,7 @@ NimPad is a terminal-based text editor built for efficiency and fast text manipu
 ## Installation
 To get started with NimPad, follow these steps:
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/jtcase/nimpad.git
-   ```
+1. **Clone  or Download the repository**:
 2. **Navigate to the NimPad directory**
    ```bash
    cd nimpad
