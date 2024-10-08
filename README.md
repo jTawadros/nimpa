@@ -8,6 +8,7 @@ NimPad is a terminal-based text editor built for efficiency and fast text manipu
 - **Text Insertion**: Add text mid-file without overwriting existing content.
 - **Line Tracking**: Navigate and edit across multiple lines efficiently with advanced line tracking capabilities.
 - **Cursor Navigation**: Seamlessly move the cursor in all directions using arrow keys.
+- **File Handling**: Create, save, and edit files now. Run the program using ./nimp filename.ext
 
 ## Recent Changes
 - **Fully Modular Arrow Key Navigation**: Cursor movement is now fully modular, allowing you to move in all directions using the arrow keys, enhancing the editor's navigation capabilities.
