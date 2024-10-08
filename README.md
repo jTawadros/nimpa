@@ -3,6 +3,27 @@
 ## Overview
 NimPad is a terminal-based text editor built for efficiency and fast text manipulation. It utilizes the `ncurses` library for rendering and handling terminal input, providing a streamlined and lightweight editing environment.
 
+## Installation
+To get started with NimPad, follow these steps:
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/nimpad.git
+   ```
+2. **Navigate to the NimPad directory**
+   ```bash
+   cd nimpad
+   ```
+3. **Build NimPad using the Makefile**
+   ```bash
+   make
+   ```
+4. Run NimPad:
+   ```bash
+   ./nimp filename.ext
+   ```
+
+
 ## Current Features
 - **Basic Text Editing**: You can write, edit, and delete text within a file.
 - **Text Insertion**: Add text mid-file without overwriting existing content.
