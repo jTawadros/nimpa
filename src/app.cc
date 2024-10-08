@@ -3,12 +3,10 @@
 void App::start(){
     // Init renderer
     renderer.initialize();
-
     bool running = true;
     while(running) {
-        running = handleInput();
         renderer.draw(gapBuffer.getBuffer(), gapBuffer.get_cursor(), gapBuffer);
-
+        running = handleInput();
     }
 
     renderer.cleanup();
@@ -29,21 +27,11 @@ void App::openFile(const std::string& fileName){
             gapBuffer.insert(a);
         }
 
-    }else {
-        std::ofstream outFile(fileName);
-
-        if (outFile) {
-            File_Here = fileName;
-            outFile.close();
-        } else {
-            std::cerr << "Could not create the file: " << fileName << std::endl;
-        }
-
     }
+        File_Here = fileName;
 }
 
 void App::saveFile() {
-
     std::ofstream outFile(File_Here);
     if (outFile) {
         char* buffer = gapBuffer.getBuffer();
