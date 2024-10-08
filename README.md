@@ -28,7 +28,7 @@ To get started with NimPad, follow these steps:
 - **Basic Text Editing**: You can write, edit, and delete text within a file.
 - **Text Insertion**: Add text mid-file without overwriting existing content.
 - **Line Tracking**: Navigate and edit across multiple lines efficiently with advanced line tracking capabilities.
-- **Cursor Navigation**: Seamlessly move the cursor in all directions using arrow keys.
+- **Cursor Navigation**: Move the cursor in all directions using arrow keys. (Up and Down arrows are buggy but can be compensated with left and right arrows which work well)
 - **File Handling**: Create, save, and edit files now. Run the program using ./nimp filename.ext
 
 ## Recent Changes
