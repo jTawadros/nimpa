@@ -8,7 +8,7 @@
 class Renderer {
     public:
         void initialize();
-        void draw(const char* buffer, int cursor_position, const GapBuffer& gapBuffer);
+        void draw(const char* buffer, int cursor_position);
         void cleanup();
         int getInput();
         int getColumns();

@@ -8,7 +8,7 @@ void Renderer::initialize() {
     keypad(stdscr, TRUE);
 }
 
-void Renderer::draw(const char* buffer, int cursor_position, const GapBuffer& gapBuffer) {
+void Renderer::draw(const char* buffer, int cursor_position) {
     // Clear the screen first
     clear();
 

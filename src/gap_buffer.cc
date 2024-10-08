@@ -2,8 +2,8 @@
 #include <iostream>
 #include <cstring>
 
-GapBuffer::GapBuffer(int buffer_size, int gap_size)
-    : buffer_size(buffer_size), gap_size(gap_size), gap_left(0), gap_right(gap_size-1) {
+GapBuffer::GapBuffer(int buffer_size)
+    : buffer(nullptr), gap_left(0), gap_right(9), buffer_size(buffer_size) {
         buffer = new char[buffer_size];
         lineStarts.push_back(0);
     }
@@ -12,7 +12,7 @@ GapBuffer::~GapBuffer(){
     delete [] buffer; // free memory
 }
 
-void GapBuffer::grow(int position){
+void GapBuffer::grow(){
     int new_size = buffer_size * 2;
     char* temp = new char[new_size];
 
@@ -63,7 +63,7 @@ void GapBuffer::insert(char input){
 
     if (gap_right == gap_left){
         // Double the size 
-        grow(gap_left);
+        grow();
     }
 
     // insert in the correct position.
@@ -80,7 +80,7 @@ void GapBuffer::addNewLine(int position){
 }
 
 int GapBuffer::getLineFromBuffer(int position) const {
-    for (int i = 0; i < lineStarts.size(); ++i) {
+    for (size_t i = 0; i < lineStarts.size(); ++i) {
         if (lineStarts[i] > position) {
             return i - 1;
         }
@@ -88,11 +88,11 @@ int GapBuffer::getLineFromBuffer(int position) const {
     return lineStarts.size() - 1;
 }
 
-int GapBuffer::getLineStart(int lineIndex) const {
+int GapBuffer::getLineStart(size_t lineIndex) const {
     return lineStarts[lineIndex];
 }
 
-void GapBuffer::removeLine(int lineIndex) {
+void GapBuffer::removeLine(size_t lineIndex) {
     if (lineIndex >= 0 && lineIndex < lineStarts.size()) {
         lineStarts.erase(lineStarts.begin() + lineIndex);
     }
@@ -131,7 +131,7 @@ void GapBuffer::move_cursor_right(){
 
 }
 
-void GapBuffer::move_cursor_up(int COLS) {
+void GapBuffer::move_cursor_up() {
     // Determine the current line number based on gap_left
     int currentLine = getLineFromBuffer(gap_left);
 
@@ -157,9 +157,9 @@ void GapBuffer::move_cursor_up(int COLS) {
 
 
 
-void GapBuffer::move_cursor_down(int COLS){
+void GapBuffer::move_cursor_down(){
 
-    int currentLine = getLineFromBuffer(gap_left);
+    size_t currentLine = getLineFromBuffer(gap_left);
 
     if (currentLine < lineStarts.size() - 1) {
         int currentLineStart = getLineStart(currentLine);
@@ -191,7 +191,7 @@ int GapBuffer::get_cursor(){
     return gap_left;
 }
 
-int GapBuffer::getLineEnd(int currentLine) {
+int GapBuffer::getLineEnd(size_t currentLine) {
     // If the current line is the last line, the end is at gap_right or buffer_size - 1
     if (currentLine + 1 >= lineStarts.size()) {
         return buffer_size - 1;  // Last character in the buffer

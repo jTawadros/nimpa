@@ -5,7 +5,7 @@ void App::start(){
     renderer.initialize();
     bool running = true;
     while(running) {
-        renderer.draw(gapBuffer.getBuffer(), gapBuffer.get_cursor(), gapBuffer);
+        renderer.draw(gapBuffer.getBuffer(), gapBuffer.get_cursor());
         running = handleInput();
     }
 
@@ -68,12 +68,12 @@ bool App::handleInput(){
 
         // Key_Up
         case 259:
-            gapBuffer.move_cursor_up(renderer.getColumns());
+            gapBuffer.move_cursor_up();
             return true;
 
         // Key_Down
         case 258:
-            gapBuffer.move_cursor_down(renderer.getColumns());
+            gapBuffer.move_cursor_down();
             return true;
             break;
 
