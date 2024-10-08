@@ -21,11 +21,21 @@ NimPad is a terminal-based text editor built for efficiency and fast text manipu
 - **Enter**: Add a new line.
 - **Backspace**: Delete the character to the left of the cursor.
 - **F1**: Quit the editor.
+- **F2**: Save.
+- **F3**: Save and Quit.
 
 ## Planned Features
 - **Search Functionality**: Implementation of a search bar to easily find and replace text within the file.
-- **File Management**: Ability to save and load files, making it easy to work with existing documents.
 - **Text Shortcuts**: Additional commands for more advanced text manipulation, such as copying, cutting, and pasting.
+- **Syntax Highlighting**
+- **Line Numbers**
+- **Auto-Complete**: For code writing per language.
+- **Custom Cursor**
+- **Customization Options**
+
+
+
+
 
 
 
