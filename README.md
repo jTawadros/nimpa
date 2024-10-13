@@ -3,6 +3,16 @@
 ## Overview
 NimPad is a terminal-based text editor built for efficiency and fast text manipulation. It utilizes the `ncurses` library for rendering and handling terminal input, providing a streamlined and lightweight editing environment.
 
+## Warning: File Loading Limitation
+
+Nimpad currently does not support automatic line wrapping. Please ensure that any files loaded into the editor contain manual line breaks (physical `\n`) where necessary. Files without these line breaks may result in text extending beyond the visible frame without wrapping.
+
+If you're loading a file with code, it should generally be safe to load. However, if text extends past the screen, press `F1` to quit the editor.
+
+*Note: Nimpad is a project focused on low-level terminal communication, built using `ncurses`. I'm a student working to deepen my understanding of terminal interfaces, so certain features are still under development.*
+
+
+
 ## Installation
 To get started with NimPad, follow these steps:
 
