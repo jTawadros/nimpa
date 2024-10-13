@@ -11,7 +11,22 @@ If you're loading a file with code, it should generally be safe to load. However
 
 *Note: Nimpad is a project focused on low-level terminal communication, built using `ncurses`. I'm a student working to deepen my understanding of terminal interfaces, so certain features are still under development.*
 
+## Prerequisites
 
+Before running Nimpad, ensure you have the following depndencies installed on your device!
+
+### Dependency Installation
+
+### On Ubuntu/Debian
+```bash
+sudo apt update
+sudo apt install ncurses-dev g++ make
+```
+
+### macOS with Homebrew
+```bash
+brew install ncurses
+```
 
 ## Installation
 To get started with NimPad, follow these steps:
