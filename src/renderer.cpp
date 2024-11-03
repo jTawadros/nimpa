@@ -10,6 +10,7 @@ void Renderer::initialize() {
 
 void Renderer::draw(const std::string &buffer, int cursor_position) {
   clear();
+  curs_set(0);
 
   int x = 0, y = 0;
   int cursor_x = 0, cursor_y = 0;
@@ -32,6 +33,8 @@ void Renderer::draw(const std::string &buffer, int cursor_position) {
 
   move(cursor_y, cursor_x);
   refresh();
+  curs_set(1);          // Show the cursor
+
 }
 
 void Renderer::cleanup() { endwin(); }
