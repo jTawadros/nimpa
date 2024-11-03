@@ -7,7 +7,7 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++17 -Iinclude
 
 # Source files
-SRC = src/main.cc src/app.cc src/renderer.cc src/gap_buffer.cc
+SRC = src/main.cpp src/app.cpp src/renderer.cpp src/gap_buffer.cpp
 
 # Output executable
 OUTPUT = nimp
