@@ -13,9 +13,7 @@ If you're loading a file with code, it should generally be safe to load. However
 
 
 
-## Prerequisites
 
-Before running Nimpad, ensure you have the following depndencies installed on your device!
 
 ## Installation Automatic
 To get started with NimPad, follow these steps:
@@ -24,20 +22,24 @@ To get started with NimPad, follow these steps:
    ```bash
    git clone https://github.com/jTawadros/nimpa
    ```
-2. **Navigate to the NimPad directory**
+2. **Navigate to the NimPad build directory**
    ```bash
    cd nimpa/build
    ```
-3. **Build NimPad using the Makefile**
+3. **Build NimPad**
    ```bash
    ./build.sh
    ```
-4. Run NimPad:
+4. **Run NimPad**
    ```bash
    ./nimp filename.ext
    ```
 
 OR
+
+## Prerequisites
+
+Before running Nimpad, ensure you have the following depndencies installed on your device!
 
 ### Installation Manual
 
@@ -52,7 +54,14 @@ sudo apt install ncurses-dev g++ make
 brew install ncurses
 ```
 
-
+1. **Navigate to build directory**
+    ```bash
+    make
+    ```
+2. **Run NimPad**
+    ```bash
+   ./nimp filename.ext
+    ```
 ## Controls
 - **Arrow Keys**: Move the cursor up, down, left, and right.
 - **Enter**: Add a new line.
