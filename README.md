@@ -11,11 +11,35 @@ If you're loading a file with code, it should generally be safe to load. However
 
 *Note: Nimpad is a project focused on low-level terminal communication, built using `ncurses`. I'm a student working to deepen my understanding of terminal interfaces, so certain features are still under development.*
 
+
+
 ## Prerequisites
 
 Before running Nimpad, ensure you have the following depndencies installed on your device!
 
-### Dependency Installation
+## Installation Automatic
+To get started with NimPad, follow these steps:
+
+1. **Clone  or Download the repository**:
+   ```bash
+   git clone https://github.com/jTawadros/nimpa
+   ```
+2. **Navigate to the NimPad directory**
+   ```bash
+   cd nimpa/build
+   ```
+3. **Build NimPad using the Makefile**
+   ```bash
+   ./build.sh
+   ```
+4. Run NimPad:
+   ```bash
+   ./nimp filename.ext
+   ```
+
+OR
+
+### Installation Manual
 
 ### On Ubuntu/Debian
 ```bash
@@ -28,23 +52,14 @@ sudo apt install ncurses-dev g++ make
 brew install ncurses
 ```
 
-## Installation
-To get started with NimPad, follow these steps:
 
-1. **Clone  or Download the repository**:
-2. **Navigate to the NimPad directory**
-   ```bash
-   cd nimpad
-   ```
-3. **Build NimPad using the Makefile**
-   ```bash
-   make
-   ```
-4. Run NimPad:
-   ```bash
-   ./nimp filename.ext
-   ```
-
+## Controls
+- **Arrow Keys**: Move the cursor up, down, left, and right.
+- **Enter**: Add a new line.
+- **Backspace**: Delete the character to the left of the cursor.
+- **F1**: Quit the editor.
+- **F2**: Save.
+- **F3**: Save and Quit.
 
 ## Current Features
 - **Basic Text Editing**: You can write, edit, and delete text within a file.
@@ -60,13 +75,6 @@ To get started with NimPad, follow these steps:
 - **Gap Buffer**: NimPad uses a custom gap buffer implementation to efficiently manage text, particularly for insertions and deletions. This ensures minimal reallocation and provides fast editing even for large files.
 - **Line Tracking**: An additional line tracking mechanism is implemented to facilitate efficient multi-line navigation and cursor positioning, improving the experience when working with larger documents.
 
-## Controls
-- **Arrow Keys**: Move the cursor up, down, left, and right.
-- **Enter**: Add a new line.
-- **Backspace**: Delete the character to the left of the cursor.
-- **F1**: Quit the editor.
-- **F2**: Save.
-- **F3**: Save and Quit.
 
 ## Planned Features
 - **Search Functionality**: Implementation of a search bar to easily find and replace text within the file.
