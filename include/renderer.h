@@ -7,7 +7,7 @@
 class Renderer {
 public:
     void initialize();
-    void draw(const std::string& buffer, int cursor_position);
+    void draw(const std::string& buffer, int cursor_position, int top_line);
     void cleanup();
     int getInput();
 };

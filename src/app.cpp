@@ -6,7 +6,7 @@ void App::start() {
   renderer.initialize();
   bool running = true;
   while (running) {
-    renderer.draw(gapBuffer.getBuffer(), gapBuffer.get_cursor());
+    renderer.draw(gapBuffer.getBuffer(), gapBuffer.get_cursor(), top_line);
     running = handleInput();
   }
   renderer.cleanup();
@@ -43,6 +43,7 @@ void App::saveFile() {
 
 bool App::handleInput() {
   int ch = renderer.getInput();
+  int current_line = gapBuffer.get_line_from_buffer(gapBuffer.get_cursor());
 
   switch (ch) {
   case KEY_LEFT:
@@ -53,9 +54,15 @@ bool App::handleInput() {
     break;
   case KEY_UP:
     gapBuffer.move_cursor_up();
+    if (current_line <= top_line && top_line > 0) {
+      top_line--;
+    }
     break;
   case KEY_DOWN:
     gapBuffer.move_cursor_down();
+    if (current_line >= top_line + LINES -1) {
+      top_line++;
+    }
     break;
   case KEY_BACKSPACE:
   case 127: // Delete key
