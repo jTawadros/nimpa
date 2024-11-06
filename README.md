@@ -15,7 +15,7 @@ If you're loading a file with code, it should generally be safe to load. However
 
 
 
-## Installation Automatic
+## Automatic Installation
 To get started with NimPad, follow these steps:
 
 1. **Clone  or Download the repository**:
@@ -34,14 +34,8 @@ To get started with NimPad, follow these steps:
    ```bash
    ./nimp filename.ext
    ```
-
-OR
-
-## Prerequisites
-
+## Manual Installation
 Before running Nimpad, ensure you have the following depndencies installed on your device!
-
-### Installation Manual
 
 ### On Ubuntu/Debian
 ```bash
