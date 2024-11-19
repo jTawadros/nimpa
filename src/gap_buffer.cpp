@@ -185,3 +185,19 @@ void GapBuffer::remove_at_cursor() {
 }
 
 int GapBuffer::get_cursor() const { return gap_left; }
+
+int GapBuffer::logical_to_buffer_index(int logical_pos) const {
+  if (logical_pos < gap_left)
+    return logical_pos;
+  else
+    return logical_pos + (gap_right - gap_left + 1);
+}
+
+int GapBuffer::buffer_index_to_logical(int buffer_index) const {
+  if (buffer_index < gap_left)
+    return buffer_index;
+  else if (buffer_index > gap_right)
+    return buffer_index - (gap_right - gap_left + 1);
+  else
+   return gap_left;
+}
