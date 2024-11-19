@@ -80,10 +80,8 @@ int GapBuffer::get_line_start(size_t lineIndex) const {
 
 int GapBuffer::get_line_end(size_t lineIndex) const {
   if (lineIndex + 1 < line_starts.size()) {
-    return line_starts[lineIndex + 1] -
-           2; // -2 because of zero-based index and excluding newline
+    return line_starts[lineIndex + 1] - 1;
   } else {
-    // Last line
     int total_length = gap_left + (buffer_size - gap_right - 1);
     return total_length - 1;
   }
@@ -98,31 +96,18 @@ void GapBuffer::remove_line(size_t lineIndex) {
 void GapBuffer::move_gap_left(int position) {
   while (gap_left > position) {
     gap_left--;
-    buffer[gap_right--] = buffer[gap_left];
-    buffer[gap_left] = '\0';
-
-    for (size_t i = 0; i < line_starts.size(); ++i) {
-      if (line_starts[i] == gap_left) {
-        line_starts[i] = gap_right + 1;
-      } else if (line_starts[i] > gap_left) {
-        line_starts[i]++;
-      }
-    }
+    gap_right--;
+    buffer[gap_right + 1] = buffer[gap_left];
+    buffer[gap_left] = '\0'; // Optional: clear the character
   }
 }
 
 void GapBuffer::move_gap_right(int position) {
   while (gap_left < position && gap_right < buffer_size - 1) {
-    buffer[gap_left++] = buffer[++gap_right];
-    buffer[gap_right] = '\0';
-
-    for (size_t i = 0; i < line_starts.size(); ++i) {
-      if (line_starts[i] == gap_right) {
-        line_starts[i] = gap_left - 1;
-      } else if (line_starts[i] > gap_right) {
-        line_starts[i]--;
-      }
-    }
+    buffer[gap_left] = buffer[gap_right + 1];
+    buffer[gap_right + 1] = '\0'; // Optional: clear the character
+    gap_left++;
+    gap_right++;
   }
 }
 
@@ -146,10 +131,17 @@ void GapBuffer::move_cursor_up() {
     int previous_line_start = get_line_start(current_line - 1);
     int previous_line_end = get_line_end(current_line - 1);
     int previous_line_length = previous_line_end - previous_line_start + 1;
-    int target_position =
-        previous_line_start + std::min(current_column, previous_line_length);
 
-    move_gap_left(target_position);
+    int target_column = std::min(current_column, previous_line_length - 1);
+    int target_position = previous_line_start + target_column;
+
+    if (gap_left != target_position) {
+      if (gap_left > target_position) {
+        move_gap_left(target_position);
+      } else {
+        move_gap_right(target_position);
+      }
+    }
   }
 }
 
@@ -160,10 +152,17 @@ void GapBuffer::move_cursor_down() {
     int next_line_start = get_line_start(current_line + 1);
     int next_line_end = get_line_end(current_line + 1);
     int next_line_length = next_line_end - next_line_start + 1;
-    int target_position =
-        next_line_start + std::min(current_column, next_line_length);
 
-    move_gap_right(target_position);
+    int target_column = std::min(current_column, next_line_length - 1);
+    int target_position = next_line_start + target_column;
+
+    if (gap_left != target_position) {
+      if (gap_left > target_position) {
+        move_gap_left(target_position);
+      } else {
+        move_gap_right(target_position);
+      }
+    }
   }
 }
 
@@ -185,19 +184,3 @@ void GapBuffer::remove_at_cursor() {
 }
 
 int GapBuffer::get_cursor() const { return gap_left; }
-
-int GapBuffer::logical_to_buffer_index(int logical_pos) const {
-  if (logical_pos < gap_left)
-    return logical_pos;
-  else
-    return logical_pos + (gap_right - gap_left + 1);
-}
-
-int GapBuffer::buffer_index_to_logical(int buffer_index) const {
-  if (buffer_index < gap_left)
-    return buffer_index;
-  else if (buffer_index > gap_right)
-    return buffer_index - (gap_right - gap_left + 1);
-  else
-   return gap_left;
-}

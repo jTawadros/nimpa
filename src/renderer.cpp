@@ -18,6 +18,16 @@ void Renderer::draw(const std::string &buffer, int cursor_position,
 
   int current_line = 0;
 
+  for (int i = top_line; i < LINES + top_line; ++i) {
+    move(y, 0);
+    clrtoeol();
+    y++;
+  }
+
+  x = 0;
+  y = 0;
+  current_line = 0;
+
   for (size_t i = 0; i < buffer.size(); ++i) {
     if (current_line >= top_line && y < LINES) {
       if(x == 0) {
