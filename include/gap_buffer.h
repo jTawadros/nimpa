@@ -30,6 +30,9 @@ private:
   int get_line_start(size_t lineIndex) const;
   int get_line_end(size_t lineIndex) const;
 
+  int logical_to_buffer_index(int logical_pos) const;
+  int buffer_index_to_logical(int buffer_index) const;
+
   char *buffer;
   int buffer_size;
   int gap_left;

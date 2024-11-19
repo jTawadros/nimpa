@@ -1,7 +1,6 @@
 #include "../include/gap_buffer.h"
 #include <algorithm> // For std::min
 #include <cstring>
-#include <iostream>
 
 GapBuffer::GapBuffer(int buffer_size)
     : buffer_size(buffer_size), gap_left(0), gap_right(buffer_size - 1) {
@@ -50,11 +49,13 @@ void GapBuffer::insert(char input) {
     grow();
   }
 
-  buffer[gap_left++] = input;
-
   if (input == '\n') {
-    add_new_line(gap_left - 1);
+    int new_line_start = gap_left;
+    line_starts.insert(std::upper_bound(line_starts.begin(), line_starts.end(),
+                                        new_line_start),
+                       new_line_start);
   }
+  buffer[gap_left++] = input;
 }
 
 void GapBuffer::add_new_line(int position) {
@@ -96,8 +97,17 @@ void GapBuffer::remove_line(size_t lineIndex) {
 
 void GapBuffer::move_gap_left(int position) {
   while (gap_left > position) {
-    buffer[gap_right--] = buffer[--gap_left];
+    gap_left--;
+    buffer[gap_right--] = buffer[gap_left];
     buffer[gap_left] = '\0';
+
+    for (size_t i = 0; i < line_starts.size(); ++i) {
+      if (line_starts[i] == gap_left) {
+        line_starts[i] = gap_right + 1;
+      } else if (line_starts[i] > gap_left) {
+        line_starts[i]++;
+      }
+    }
   }
 }
 
@@ -105,6 +115,14 @@ void GapBuffer::move_gap_right(int position) {
   while (gap_left < position && gap_right < buffer_size - 1) {
     buffer[gap_left++] = buffer[++gap_right];
     buffer[gap_right] = '\0';
+
+    for (size_t i = 0; i < line_starts.size(); ++i) {
+      if (line_starts[i] == gap_right) {
+        line_starts[i] = gap_left - 1;
+      } else if (line_starts[i] > gap_right) {
+        line_starts[i]--;
+      }
+    }
   }
 }
 
@@ -155,9 +173,14 @@ void GapBuffer::remove_at_cursor() {
 
     if (buffer[gap_left] == '\n') {
       int line_to_remove = get_line_from_buffer(gap_left);
-      remove_line(line_to_remove + 1);
+      line_starts.erase(line_starts.begin() + line_to_remove + 1);
+    } else {
+      for (size_t i = 0; i < line_starts.size(); ++i) {
+        if (line_starts[i] > gap_left) {
+          line_starts[i]--;
+        }
+      }
     }
-
   }
 }
 
