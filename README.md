@@ -1,7 +1,7 @@
 # NIMPAD TEXT EDITOR
 
 ## Overview
-NimPad is a terminal-based text editor built for efficiency and fast text manipulation. It utilizes the `ncurses` library for rendering and handling terminal input, providing a streamlined and lightweight editing environment.
+This is a project I've created out of a passion to learn and create tools for deevelopers. This is, however, not a complete project. NimPad is sadly not ready to be your main text editor just yet. I would appreciate if you checked it out and potentially added improvements or suggestions.
 
 ## Warning: File Loading Limitation
 
@@ -10,10 +10,6 @@ Nimpad currently does not support automatic line wrapping. Please ensure that an
 If you're loading a file with code, it should generally be safe to load. However, if text extends past the screen, press `F1` to quit the editor.
 
 *Note: Nimpad is a project focused on low-level terminal communication, built using `ncurses`. I'm a student working to deepen my understanding of terminal interfaces, so certain features are still under development.*
-
-
-
-
 
 ## Automatic Installation
 To get started with NimPad, follow these steps:
@@ -68,11 +64,12 @@ brew install ncurses
 - **Basic Text Editing**: You can write, edit, and delete text within a file.
 - **Text Insertion**: Add text mid-file without overwriting existing content.
 - **Line Tracking**: Navigate and edit across multiple lines efficiently with advanced line tracking capabilities.
-- **Cursor Navigation**: Move the cursor in all directions using arrow keys. (Up and Down arrows are buggy but can be compensated with left and right arrows which work well)
+- **Cursor Navigation**: Move the cursor in all directions using arrow keys.
 - **File Handling**: Create, save, and edit files now. Run the program using ./nimp filename.ext
 
 ## Recent Changes
-- **Fully Modular Arrow Key Navigation**: Cursor movement is now fully modular, allowing you to move in all directions using the arrow keys, enhancing the editor's navigation capabilities.
+- **Cursor movement Bug fix 1**: Fixed bug where moving cursor down forced cursor to end of file. 
+- **Cursor movement Bug fix 2**: Fixed bug where moving cursor up would delete text and input random special characters.
 
 ## Data Structures
 - **Gap Buffer**: NimPad uses a custom gap buffer implementation to efficiently manage text, particularly for insertions and deletions. This ensures minimal reallocation and provides fast editing even for large files.
@@ -80,11 +77,10 @@ brew install ncurses
 
 
 ## Planned Features
-- **Search Functionality**: Implementation of a search bar to easily find and replace text within the file.
+- **Live Grep search**: Using Aho-Corasick data structure, I plan to implement a grepping sort of feature using the unix fgrep as inspiration for code.
 - **Text Shortcuts**: Additional commands for more advanced text manipulation, such as copying, cutting, and pasting.
 - **Syntax Highlighting**
 - **Line Numbers**
-- **Auto-Complete**: For code writing per language.
 - **Custom Cursor**
 - **Customization Options**
 
