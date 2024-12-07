@@ -81,7 +81,6 @@ brew install ncurses
 
 
 ## Planned Features
-- **Live Grep search**: Using Aho-Corasick data structure, I plan to implement a grepping sort of feature using the unix fgrep as inspiration for code.
 - **Text Shortcuts**: Additional commands for more advanced text manipulation, such as copying, cutting, and pasting.
 - **Syntax Highlighting**
 - **Line Numbers**
