@@ -74,9 +74,10 @@ brew install ncurses
 - **Cursor movement Bug fix 1**: Fixed bug where moving cursor down forced cursor to end of file. 
 - **Cursor movement Bug fix 2**: Fixed bug where moving cursor up would delete text and input random special characters.
 
-## Data Structures
+### Data Structures and Algorithms
 - **Gap Buffer**: NimPad uses a custom gap buffer implementation to efficiently manage text, particularly for insertions and deletions. This ensures minimal reallocation and provides fast editing even for large files.
 - **Line Tracking**: An additional line tracking mechanism is implemented to facilitate efficient multi-line navigation and cursor positioning, improving the experience when working with larger documents.
+- **Aho-Corasick Algorithm**: The multi-pattern search feature is powered by the Aho-Corasick algorithm, a trie-based string-searching technique that preprocesses a set of patterns into a finite state machine. This allows *Nimpad* to perform efficient live grep functionality, matching multiple patterns in a single pass through the text. This implementation is especially beneficial for users handling complex search operations or keyword highlighting.
 
 
 ## Planned Features
