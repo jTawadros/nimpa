@@ -7,7 +7,7 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++17 -Iinclude
 
 # Source files
-SRC = ../src/main.cpp ../src/app.cpp ../src/renderer.cpp ../src/gap_buffer.cpp
+SRC = ../src/main.cpp ../src/app.cpp ../src/renderer.cpp ../src/gap_buffer.cpp ../src/aho_corasick.cpp
 
 # Output executable
 OUTPUT = nimp

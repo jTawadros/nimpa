@@ -13,6 +13,7 @@ public:
 private:
   bool handleInput();
   void saveFile();
+  void showSearchBar();
 
   Renderer renderer;
   GapBuffer gapBuffer;
