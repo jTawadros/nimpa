@@ -70,7 +70,10 @@ brew install ncurses
 - **File Handling**: Create, save, and edit files now. Run the program using ./nimp filename.ext
 
 
-## Recent Changes
+## Recent fixes and Updates
+**Dec 7**
+- **Aho-Corasick Update**: Search feature now incorporates the use of backslashes(\) to search multiple patterns. E.g. app\cout\return will return lines including all of those words.
+**Nov 19**
 - **Cursor movement Bug fix 1**: Fixed bug where moving cursor down forced cursor to end of file. 
 - **Cursor movement Bug fix 2**: Fixed bug where moving cursor up would delete text and input random special characters.
 
