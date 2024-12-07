@@ -59,13 +59,16 @@ brew install ncurses
 - **F1**: Quit the editor.
 - **F2**: Save.
 - **F3**: Save and Quit.
+- **Ctrl-F**: Live grep multi-pattern search (Aho-Corasick)
 
 ## Current Features
+- **Aho-Corasick Live grep search (main assignment functionality)**: Efficiently search for multiple patterns in the text at once using the Aho-Corasick algorithm. This feature allows you to specify search terms and returns all matches within the file, displaying their positions. The search is triggered by pressing Enter after typing the search query, ensuring accurate and responsive results. This implementation is optimized for multi-pattern searching, making it ideal for users who need to locate multiple keywords or phrases in a single operation!  
 - **Basic Text Editing**: You can write, edit, and delete text within a file.
 - **Text Insertion**: Add text mid-file without overwriting existing content.
 - **Line Tracking**: Navigate and edit across multiple lines efficiently with advanced line tracking capabilities.
 - **Cursor Navigation**: Move the cursor in all directions using arrow keys.
 - **File Handling**: Create, save, and edit files now. Run the program using ./nimp filename.ext
+
 
 ## Recent Changes
 - **Cursor movement Bug fix 1**: Fixed bug where moving cursor down forced cursor to end of file. 
