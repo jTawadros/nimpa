@@ -10,7 +10,7 @@ void AhoCorasick::build(const std::vector<std::string> &patterns) {
         pattern_lengths.push_back((int)p.size());
     }
 
-    // Build trie for all patterns
+    // Build trie
     for (int pid = 0; pid < pattern_count; pid++) {
         const std::string &pattern = patterns[pid];
         int current = 0;

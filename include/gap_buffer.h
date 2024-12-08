@@ -19,6 +19,7 @@ public:
   void remove_at_cursor();
   int get_cursor() const;
   int get_line_from_buffer(int position) const;
+  void ensureTrailingLine();
 
 private:
   void grow();                       // Grow the buffer

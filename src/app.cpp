@@ -28,6 +28,7 @@ void App::openFile(const std::string &fileName) {
     file_here =
         fileName; // Even if file doesn't exist, set the filename for saving
   }
+  gapBuffer.ensureTrailingLine();
 }
 
 void App::saveFile() {

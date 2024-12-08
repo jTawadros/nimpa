@@ -147,25 +147,32 @@ void GapBuffer::move_cursor_up() {
 
 void GapBuffer::move_cursor_down() {
   int current_line = get_line_from_buffer(gap_left);
+
+  // Check if we are at the last line
   if (current_line + 1 < static_cast<int>(line_starts.size())) {
+    // Normal case: Move to the next line
     int current_column = gap_left - get_line_start(current_line);
     int next_line_start = get_line_start(current_line + 1);
     int next_line_end = get_line_end(current_line + 1);
-    int next_line_length = next_line_end - next_line_start + 1;
 
+    int next_line_length = next_line_end - next_line_start + 1;
     int target_column = std::min(current_column, next_line_length - 1);
     int target_position = next_line_start + target_column;
 
-    if (gap_left != target_position) {
-      if (gap_left > target_position) {
-        move_gap_left(target_position);
-      } else {
-        move_gap_right(target_position);
-      }
+    if (gap_left > target_position) {
+      move_gap_left(target_position);
+    } else if (gap_left < target_position) {
+      move_gap_right(target_position);
+    }
+  } else {
+    // Edge case: Handle the "virtual last line" if no newline exists
+    int total_length = gap_left + (buffer_size - gap_right - 1);
+    if (gap_left < total_length) {
+      // Move to the end of the buffer (virtual last line)
+      move_gap_right(total_length);
     }
   }
 }
-
 void GapBuffer::remove_at_cursor() {
   if (gap_left > 0) {
     gap_left--;
@@ -184,3 +191,18 @@ void GapBuffer::remove_at_cursor() {
 }
 
 int GapBuffer::get_cursor() const { return gap_left; }
+
+void GapBuffer::ensureTrailingLine() {
+  int total_length = gap_left + (buffer_size - gap_right - 1);
+  if (!line_starts.empty()) {
+    int last_recorded_line_start = line_starts.back();
+    if (last_recorded_line_start < total_length) {
+      line_starts.push_back(total_length);
+    }
+  } else {
+    line_starts.push_back(0);
+    if (total_length > 0) {
+      line_starts.push_back(total_length);
+    }
+  }
+}
