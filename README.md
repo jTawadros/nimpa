@@ -1,13 +1,17 @@
 # NIMPAD TEXT EDITOR
 
 ## Overview
-This is a project I've created out of a passion to learn and create tools for deevelopers. This is, however, not a complete project. NimPad is sadly not ready to be your main text editor just yet. I would appreciate if you checked it out and potentially added improvements or suggestions.
+This is a project that started as a school assignment and transitioned to be a bit more to me.
+
+However, NimPad is sadly not ready to be your main text editor just yet. I would appreciate if you checked it out and potentially added improvements or suggestions.
 
 ## Warning: File Loading Limitation
 
 Nimpad currently does not support automatic line wrapping. Please ensure that any files loaded into the editor contain manual line breaks (physical `\n`) where necessary. Files without these line breaks may result in text extending beyond the visible frame without wrapping.
 
 If you're loading a file with code, it should generally be safe to load. However, if text extends past the screen, press `F1` to quit the editor.
+
+If you do open a file that is too large to view but you are just planning on using the live-grep (Ctrl-f) you can still do that. The live-grep feature will still analyze the entire file efficiently and will grep the results for you by line. 
 
 *Note: Nimpad is a project focused on low-level terminal communication, built using `ncurses`. I'm a student working to deepen my understanding of terminal interfaces, so certain features are still under development.*
 
