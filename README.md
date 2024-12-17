@@ -5,14 +5,13 @@ This is a project that started as a school assignment and transitioned to be a b
 
 However, NimPad is sadly not ready to be your main text editor just yet. I would appreciate if you checked it out and potentially added improvements or suggestions.
 
-## Warning: File Loading Limitation
-
-
 ## How to test algorithm for project:
 1. open or make file using ./nimp filename.ext
 2. hit ctrl-F to start search
 3. search using '\' to separate patterns
 4. When you click enter on search you can exit the file and a file should be created in the build folder that includes all the lines where your patterns were included.
+
+## Warning: File Loading Limitation
 
 Nimpad currently does not support automatic line wrapping. Please ensure that any files loaded into the editor contain manual line breaks (physical `\n`) where necessary. Files without these line breaks may result in text extending beyond the visible frame without wrapping.
 
