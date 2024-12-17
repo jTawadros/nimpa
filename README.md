@@ -8,7 +8,7 @@ However, NimPad is sadly not ready to be your main text editor just yet. I would
 ## How to test algorithm for project:
 1. open or make file using ./nimp filename.ext
 2. hit ctrl-F to start search
-3. search using '\' to separate patterns
+3. search using back slashes to separate patterns
 4. When you click enter on search you can exit the file and a file should be created in the build folder that includes all the lines where your patterns were included.
 
 ## Warning: File Loading Limitation
